@@ -1,7 +1,7 @@
 version: "3.9"
 services:
  api-development-service:
-  image: geeraertstibo/api-development:latest
+  image: geeraertstibo/api-eindproject:latest
   ports:
     - "8000:8000"
   volumes:
