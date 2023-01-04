@@ -1,11 +1,9 @@
 # schemas.py
-
 from pydantic import BaseModel
 
 # Quote schema
 class QuoteBase(BaseModel):
     content: str
-
 
 class QuoteCreate(QuoteBase):
     pass

@@ -1,5 +1,4 @@
 #main.py
-
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,7 +13,7 @@ from database import SessionLocal, engine
 if not os.path.exists('.\sqlitedb'):
     os.makedirs('.\sqlitedb')
 
-# create tables in database 'database.db' (check datapase.py database-URL)
+# create tables in database 'database.db' (check database.py database-URL)
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
