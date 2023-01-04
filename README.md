@@ -1,21 +1,21 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/tibogeeraerts/api-development">
+  <a href="https://github.com/tibogeeraerts/api-eindproject">
     <img src="images/logo.png" alt="Logo" width="200" height="150">
   </a>
 
-  <h3 align="center">Basisproject API development</h3>
+  <h3 align="center">Eindproject API development</h3>
 
   <p align="center">
     Gemaakt door Tibo Geeraerts
     <br />
-    <a href="https://github.com/tibogeeraerts/api-development"><strong>Bekijk de bestanden »</strong></a>
+    <a href="https://github.com/tibogeeraerts/api-eindproject"><strong>Bekijk de bestanden »</strong></a>
     <br />
     <br />
-    <a href="https://geeraertstibo-api.netlify.app/">Front-end website</a>
+    <a href="https://geeraertstibo-api-eindproject.netlify.app/">Front-end website</a>
     ·
-    <a href="https://api-development-service-tibogeeraerts.cloud.okteto.net/docs">API docs website</a>
+    <a href="https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/docs">API docs website</a>
   </p>
 </div>
 
@@ -171,9 +171,9 @@ Hier geef ik nog even een korte demonstratie hoe de 4 verschillende endpoints vi
 
 Tibo Geeraerts - [@geeraerts_tibo](https://twitter.com/geeraerts_tibo) - r0882113@student.thomasmore.be
 
-Front-end link: [https://geeraertstibo-api.netlify.app/](https://geeraertstibo-api.netlify.app/)
+Front-end link: [https://geeraertstibo-api-eindproject.netlify.app/](https://geeraertstibo-api-eindproject.netlify.app/)
 
-Hosted API link: [https://api-development-service-tibogeeraerts.cloud.okteto.net/docs](https://api-development-service-tibogeeraerts.cloud.okteto.net/docs)
+Hosted API link: [https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/docs](https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/docs)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -191,14 +191,14 @@ Hosted API link: [https://api-development-service-tibogeeraerts.cloud.okteto.net
 [Bootstrap-url]: https://getbootstrap.com/
 
 [frontend-screenshot]: images/front-end-screenshot.jpg
-[frontend-url]: https://geeraertstibo-api.netlify.app/
+[frontend-url]: https://geeraertstibo-api-eindproject.netlify.app/
 [getrandomquote-frontend]: images/getrandomquote-front-end.jpg
 [getlastquote-frontend]: images/getlastquote-front-end.jpg
 [postquote-frontend]: images/postquote-front-end.jpg
 [getallquotes-frontend]: images/getallquotes-front-end.jpg
 
 [backend-screenshot]: images/back-end-screenshot.jpg
-[backend-url]: https://api-development-service-tibogeeraerts.cloud.okteto.net/docs
+[backend-url]: https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/docs
 [postquote-backend]: images/postquote-back-end.jpg
 [getallquotes-backend]: images/getallquotes-back-end.jpg
 [getrandomquote-backend]: images/getrandomquote-back-end.jpg
