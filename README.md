@@ -1,11 +1,11 @@
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
+<div align="center" id="readme-top">
   <a href="https://github.com/tibogeeraerts/api-eindproject">
     <img src="images/logo.png" alt="Logo" width="200" height="150">
   </a>
 
-  <h3 align="center" id="readme-top">Eindproject API development</h3>
+  <h3 align="center">Eindproject API development</h3>
 
   <p align="center">
     Gemaakt door Tibo Geeraerts
