@@ -60,7 +60,7 @@ def get_current_admin(db: Session, token: str = Depends(oauth2_scheme)):
             raise credentials_exception
     except JWTError:
         raise credentials_exception
-    admin = crud.get_user_by_email(db, username)
+    admin = crud.get_admin_username(db, username)
     if admin is None:
         raise credentials_exception
     return admin

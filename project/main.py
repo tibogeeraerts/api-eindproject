@@ -107,3 +107,9 @@ async def delete_quote_last(db: Session = Depends(get_db)):
 async def create_admin(admin: schemas.AdminCreate, db: Session = Depends(get_db)):
     new_admin = crud.create_admin(db=db, admin=admin)
     return new_admin
+
+# GET current admin
+@app.get("/admin/me", response_model=schemas.Admin)
+def read_admin_me(db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
+    current_admin = auth.get_current_admin(db, token)
+    return current_admin
