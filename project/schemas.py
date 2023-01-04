@@ -2,7 +2,7 @@
 
 from pydantic import BaseModel
 
-
+# Quote schema
 class QuoteBase(BaseModel):
     content: str
 
@@ -10,9 +10,9 @@ class QuoteBase(BaseModel):
 class QuoteCreate(QuoteBase):
     pass
 
-
 class Quote(QuoteBase):
     id: int
 
     class Config:
         orm_mode = True
+        

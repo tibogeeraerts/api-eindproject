@@ -44,3 +44,20 @@ def get_quote_last(db: Session):
     db_quote = db.query(models.Quote).all()
     quote = db_quote[-1]
     return quote
+
+# update last quote in database
+def update_quote_last(db: Session, updated_quote: schemas.QuoteCreate):
+    db_quote = db.query(models.Quote).all()
+    quote = db_quote[-1]
+    quote.content = updated_quote.content
+    db.commit()
+    return quote
+
+# delete last quote in database
+def delete_quote_last(db: Session):
+    db_quote = db.query(models.Quote).all()
+    quote = db_quote[-1]
+    db.delete(quote)
+    db.commit()
+    return quote
+    

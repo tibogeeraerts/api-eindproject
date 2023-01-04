@@ -47,7 +47,7 @@ def startup_event():
     else:
         print("INFO:     Database already populated!")
 
-# Create custom quote
+# POST custom quote
 @app.post("/quotes/", response_model=schemas.Quote)
 async def create_quote(quote: schemas.QuoteCreate, db: Session = Depends(get_db)):
     new_quote = crud.create_quote(db=db, quote=quote)
@@ -71,3 +71,15 @@ async def read_quote_random(db: Session = Depends(get_db)):
 async def read_quote_last(db: Session = Depends(get_db)):
     quote = crud.get_quote_last(db)
     return quote
+
+# PUT last quote
+@app.put("/quotes/last", response_model=schemas.Quote)
+async def update_quote_last(quote: schemas.QuoteCreate, db: Session = Depends(get_db)):
+    updated_quote = crud.update_quote_last(db, quote)
+    return updated_quote
+
+# DELETE last quote
+@app.delete("/quotes/last", response_model=schemas.Quote)
+async def delete_quote_last(db: Session = Depends(get_db)):
+    deleted_quote = crud.delete_quote_last(db)
+    return deleted_quote
