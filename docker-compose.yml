@@ -1,11 +1,11 @@
 version: "3.9"
 services:
- api-development-service:
+ api-eindproject-service:
   image: geeraertstibo/api-eindproject:latest
   ports:
     - "8000:8000"
   volumes:
-    - sqlite_api-development_volume:/code/sqlitedb
+    - sqlite_api-eindproject_volume:/code/sqlitedb
 
 volumes:
-  sqlite_api-development_volume:
+  sqlite_api-eindproject_volume:

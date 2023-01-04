@@ -171,7 +171,7 @@ Hier geef ik nog even een korte demonstratie hoe de 4 verschillende endpoints vi
 
 Tibo Geeraerts - [@geeraerts_tibo](https://twitter.com/geeraerts_tibo) - r0882113@student.thomasmore.be
 
-Front-end link: [https://geeraertstibo-api-eindproject.netlify.app/](https://geeraertstibo-api-eindproject.netlify.app/)
+Front-end link: [https://c.netlify.app/](https://geeraertstibo-api-eindproject.netlify.app/)
 
 Hosted API link: [https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/docs](https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/docs)
 
