@@ -1,14 +1,16 @@
 #crud.py
 
 import requests
+from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
+import auth
 import models
 import schemas
 
 
 # get quote from external API
 def call_api(url: str):
-    response = requests.get('https://officeapi.dev/api/quotes/random')
+    response = requests.get(url)
     return response.json()['data']['content']
 
 # populate database with quotes from API
@@ -60,4 +62,17 @@ def delete_quote_last(db: Session):
     db.delete(quote)
     db.commit()
     return quote
-    
+
+# create admin
+def create_admin(db: Session, admin: schemas.AdminCreate):
+    hashed_password = auth.get_password_hash(admin.password)
+    db_admin = models.Admin(username=admin.username, hashed_password=hashed_password)
+    db.add(db_admin)
+    db.commit()
+    db.refresh(db_admin)
+    return db_admin
+
+# get admin by username
+def get_admin_username(db: Session, username: str):
+    admin = db.query(models.Admin).filter(models.Admin.username == username).first()
+    return admin

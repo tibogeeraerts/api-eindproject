@@ -3,10 +3,11 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 import os
 import random
 
-import crud, models, schemas
+import crud, models, schemas, auth
 from database import SessionLocal, engine
 
 # make database dir if it doesn't exist
@@ -38,6 +39,23 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+@app.post("/token")
+def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    #Try to authenticate the user
+    admin = auth.authenticate_admin(db, form_data.username, form_data.password)
+    if not admin:
+        raise HTTPException(
+            status_code=401,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    # Add the JWT case sub with the subject(user)
+    access_token = auth.create_access_token(
+        data={"sub": admin.username}
+    )
+    #Return the JWT as a bearer token to be placed in the headers
+    return {"access_token": access_token, "token_type": "bearer"}
+
 # populate database with quotes on startup
 @app.on_event("startup")
 def startup_event():
@@ -49,7 +67,7 @@ def startup_event():
 
 # POST custom quote
 @app.post("/quotes/", response_model=schemas.Quote)
-async def create_quote(quote: schemas.QuoteCreate, db: Session = Depends(get_db)):
+async def create_quote(quote: schemas.QuoteCreate, db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
     new_quote = crud.create_quote(db=db, quote=quote)
     return new_quote
 
@@ -83,3 +101,9 @@ async def update_quote_last(quote: schemas.QuoteCreate, db: Session = Depends(ge
 async def delete_quote_last(db: Session = Depends(get_db)):
     deleted_quote = crud.delete_quote_last(db)
     return deleted_quote
+
+# create admin
+@app.post("/admin/", response_model=schemas.Admin)
+async def create_admin(admin: schemas.AdminCreate, db: Session = Depends(get_db)):
+    new_admin = crud.create_admin(db=db, admin=admin)
+    return new_admin
