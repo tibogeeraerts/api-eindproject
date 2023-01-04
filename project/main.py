@@ -13,7 +13,7 @@ from database import SessionLocal, engine
 if not os.path.exists('.\sqlitedb'):
     os.makedirs('.\sqlitedb')
 
-# create tables in database 'sqlitedata.db' (check datapase.py database-URL)
+# create tables in database 'database.db' (check datapase.py database-URL)
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -42,7 +42,10 @@ app.add_middleware(
 @app.on_event("startup")
 def startup_event():
     db = SessionLocal()
-    print(crud.populate_database(db))
+    if len(db.query(models.Quote).all()) == 0:
+        print(crud.populate_database(db))
+    else:
+        print("INFO:     Database already populated!")
 
 # Create custom quote
 @app.post("/quotes/", response_model=schemas.Quote)
