@@ -190,14 +190,14 @@ Hosted API link: [https://api-eindproject-service-tibogeeraerts.cloud.okteto.net
 [Bootstrap.css]: https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com/
 
-[frontend-screenshot]: images/front-end-screenshot.jpg
+[frontend-screenshot]: images/front-end-screenshot.png
 [frontend-url]: https://geeraertstibo-api-eindproject.netlify.app/
 [getrandomquote-frontend]: images/getrandomquote-front-end.jpg
 [getlastquote-frontend]: images/getlastquote-front-end.jpg
 [postquote-frontend]: images/postquote-front-end.jpg
 [getallquotes-frontend]: images/getallquotes-front-end.jpg
 
-[backend-screenshot]: images/back-end-screenshot.jpg
+[backend-screenshot]: images/back-end-screenshot.png
 [backend-url]: https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/docs
 [postquote-backend]: images/postquote-back-end.jpg
 [getallquotes-backend]: images/getallquotes-back-end.jpg
