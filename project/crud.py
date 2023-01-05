@@ -75,3 +75,16 @@ def create_admin(db: Session, admin: schemas.AdminCreate):
 def get_admin_username(db: Session, username: str):
     admin = db.query(models.Admin).filter(models.Admin.username == username).first()
     return admin
+
+# create character (only for admin)
+def create_character(db: Session, character: schemas.CharacterCreate):
+    db_character = models.Character(name=character.name)
+    db.add(db_character)
+    db.commit()
+    db.refresh(db_character)
+    return db_character
+
+# get all characters
+def get_all_characters(db: Session):
+    all_characters = db.query(models.Character).all()
+    return all_characters

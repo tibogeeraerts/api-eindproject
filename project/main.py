@@ -65,7 +65,7 @@ def startup_event():
         print("INFO:     Database already populated!")
 
 # POST custom quote
-@app.post("/quotes/", response_model=schemas.Quote)
+@app.post("/quotes", response_model=schemas.Quote)
 async def create_quote(quote: schemas.QuoteCreate, db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
     new_quote = crud.create_quote(db=db, quote=quote)
     return new_quote
@@ -101,14 +101,32 @@ async def delete_quote_last(db: Session = Depends(get_db)):
     deleted_quote = crud.delete_quote_last(db)
     return deleted_quote
 
-# create admin
-@app.post("/admin/", response_model=schemas.Admin)
+# POST admin
+@app.post("/admin", response_model=schemas.Admin)
 async def create_admin(admin: schemas.AdminCreate, db: Session = Depends(get_db)):
     new_admin = crud.create_admin(db=db, admin=admin)
     return new_admin
 
 # GET current admin
-@app.get("/admin/me", response_model=schemas.Admin)
-def read_admin_me(db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
+@app.get("/admin", response_model=schemas.Admin)
+def read_current_admin(db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
     current_admin = auth.get_current_admin(db, token)
     return current_admin
+
+# POST character
+@app.post("/admin/characters", response_model=schemas.Character)
+async def create_character(character: schemas.CharacterCreate, db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
+    current_admin = auth.get_current_admin(db, token)
+    print('Logged in as: ' + current_admin.username)
+
+    new_character = crud.create_character(db=db, character=character)
+    return new_character
+
+# GET all characters
+@app.get("/admin/characters", response_model=list[schemas.Character])
+async def read_characters(db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
+    current_admin = auth.get_current_admin(db, token)
+    print('Logged in as: ' + current_admin.username)
+
+    characters = crud.get_all_characters(db)
+    return characters
