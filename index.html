@@ -21,7 +21,7 @@
           searchParams.append('username', this.username);
           searchParams.append('password', this.password);
         
-          this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net//token', {
+          this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/token', {
             method: 'POST',
             body: searchParams,
             headers: {
@@ -53,7 +53,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net//quotes/random')).json();
+                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/random')).json();
                 }
               }">
                 <button class="btn btn-primary" x-on:click="getData">Get random quote</button>
@@ -72,7 +72,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net//quotes/last')).json();
+                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/last')).json();
                 }
               }">
                 <button class="btn btn-primary" x-on:click="getData">Get last quote</button>
@@ -94,7 +94,7 @@
                 responsedata: null,
                 postcustomquote: null,
                 async postquote() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net//quotes/', {
+                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/', {
                     method: 'POST',
                     body: JSON.stringify({
                     content: this.postcustomquote,
@@ -125,7 +125,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net//quotes/all')).json();
+                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/all')).json();
                   let output = document.getElementById('output');
                   output.innerHTML = '';
                   for (let i = 0; i < this.responsedata.length; i++) {
@@ -153,7 +153,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net//admin')).json();
+                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/admin')).json();
                 }
               }">
                 <button class="btn btn-primary" x-on:click="getData">Get current admin</button>
@@ -172,7 +172,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net//admin/characters')).json();
+                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/admin/characters')).json();
                 }
               }">
                 <button class="btn btn-primary" x-on:click="getData">Get characters</button>
@@ -195,7 +195,7 @@
                 username: null,
                 password: null,
                 async postadmin() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net//admin', {
+                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/admin', {
                     method: 'POST',
                     body: JSON.stringify({
                       username: this.username,
@@ -228,7 +228,7 @@
                 responsedata: null,
                 name: null,
                 async postcharacter() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net//admin/characters', {
+                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/admin/characters', {
                     method: 'POST',
                     body: JSON.stringify({
                       name: this.name
