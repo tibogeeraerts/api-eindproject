@@ -10,7 +10,37 @@
     <script defer src="https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js"></script>
   </head>
   <body>
-    <h1>The Office quotes API</h1>
+    <div class="row" id="header">
+      <h1>The Office quotes API</h1>
+      <div id="loginform" x-data="{
+        responsedata: null,
+        username: null,
+        password: null,
+        async adminlogin() {
+          const searchParams = new URLSearchParams();
+          searchParams.append('username', this.username);
+          searchParams.append('password', this.password);
+        
+          this.responsedata = await (await fetch('http://127.0.0.1:8000/token', {
+            method: 'POST',
+            body: searchParams,
+            headers: {
+              'Content-type': 'application/x-www-form-urlencoded',
+            },
+          })).json();
+        },
+      }">
+        <div class="login">
+          <span>Username</span>
+        <input type="text" x-model="username">
+        </div>
+        <div class="login">
+          <span>Password</span>
+        <input type="text" x-model="password">
+        </div>
+        <button class="btn btn-primary login" x-on:click="adminlogin">Login</button>
+      </div>
+    </div>
     <hr>
     <div class="container">
       <div class="row">
@@ -23,7 +53,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/random')).json();
+                  this.responsedata = await (await fetch('http://127.0.0.1:8000/quotes/random')).json();
                 }
               }">
                 <button class="btn btn-primary" x-on:click="getData">Get random quote</button>
@@ -42,7 +72,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/last')).json();
+                  this.responsedata = await (await fetch('http://127.0.0.1:8000/quotes/last')).json();
                 }
               }">
                 <button class="btn btn-primary" x-on:click="getData">Get last quote</button>
@@ -64,7 +94,7 @@
                 responsedata: null,
                 postcustomquote: null,
                 async postquote() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/', {
+                  this.responsedata = await (await fetch('http://127.0.0.1:8000/quotes/', {
                     method: 'POST',
                     body: JSON.stringify({
                     content: this.postcustomquote,
@@ -95,7 +125,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/all')).json();
+                  this.responsedata = await (await fetch('http://127.0.0.1:8000/quotes/all')).json();
                   let output = document.getElementById('output');
                   output.innerHTML = '';
                   for (let i = 0; i < this.responsedata.length; i++) {
@@ -108,6 +138,112 @@
                 <button class="btn btn-primary" x-on:click="getData">Get all quotes</button>
                 <ul id="output" class="api-output"></ul>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Get current admin</h5>
+              <hr>
+              <p class="card-text">Get the current admin signed into the API</p>
+              <div x-data="{
+                responsedata: null,
+                async getData() {
+                  this.responsedata = await (await fetch('http://127.0.0.1:8000/admin')).json();
+                }
+              }">
+                <button class="btn btn-primary" x-on:click="getData">Get current admin</button>
+                <p class="api-output" x-text="responsedata.username"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Get all characters</h5>
+              <hr>
+              <p class="card-text">Get all characters from the API database</p>
+              <div x-data="{
+                responsedata: null,
+                async getData() {
+                  this.responsedata = await (await fetch('http://127.0.0.1:8000/admin/characters')).json();
+                }
+              }">
+                <button class="btn btn-primary" x-on:click="getData">Get characters</button>
+                <p class="api-output" x-text="responsedata.name"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create admin</h5>
+              <hr>
+              <p class="card-text">Create an admin for this page</p>
+              <div x-data="{
+                responsedata: null,
+                username: null,
+                password: null,
+                async postadmin() {
+                  this.responsedata = await (await fetch('http://127.0.0.1:8000/admin', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                      username: this.username,
+                      password: this.password,
+                    }),
+                    headers: {
+                      'Content-type': 'application/json; charset=UTF-8',
+                    },
+                  })).json();
+                },
+              }">
+              <span>Username</span>
+              <input type="text" x-model="username">
+              <span>Password</span>
+              <input type="text" x-model="password">
+              <button class="btn btn-primary" x-on:click="postadmin">Create admin</button>
+              <p class="api-output"> New admin created : <span x-text="responsedata.username"></span></p>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create character</h5>
+              <hr>
+              <p class="card-text">Create a character (only for admin)</p>
+              <div x-data="{
+                responsedata: null,
+                name: null,
+                async postcharacter() {
+                  this.responsedata = await (await fetch('http://127.0.0.1:8000/admin/characters', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                      name: this.name
+                    }),
+                    headers: {
+                      'Content-type': 'application/json; charset=UTF-8',
+                    },
+                  })).json();
+                },
+              }">
+              <span>Name</span>
+              <input type="text" x-model="name">
+              <button class="btn btn-primary" x-on:click="postcharacter">Create character</button>
+              <p class="api-output"> New character created : <span x-text="responsedata.name"></span></p>
+            </div>
             </div>
           </div>
         </div>

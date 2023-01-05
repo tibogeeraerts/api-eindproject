@@ -66,7 +66,7 @@ def startup_event():
 
 # POST custom quote
 @app.post("/quotes", response_model=schemas.Quote)
-async def create_quote(quote: schemas.QuoteCreate, db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
+async def create_quote(quote: schemas.QuoteCreate, db: Session = Depends(get_db)):
     new_quote = crud.create_quote(db=db, quote=quote)
     return new_quote
 
