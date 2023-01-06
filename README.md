@@ -147,11 +147,60 @@ In dit deel van de docs pagina kan er een willekeurige quote worden gevraagd. Er
 
 Ook bij deze request zijn er geen parameters nodig. Door hier op de 'execute' knop te drukken wordt de laatste quote uit de database opgevraagt. Als er dus een zelfgemaakte quote in de database is gezet, zal deze hier weergegeven worden.
 
+#### Put last quote back-end
+
+![Update last quote back-end][updatelastquote-backend]
+
+Dit is een put request endpoint. Dit endpoint kan worden gebruikt om de laatste quote in de database aan te passen. Dit kan dus een zelfgemaakte quote zijn, maar ook een standaardquote. Er wordt enkel nieuwe content gevraagd voor deze quote.
+
+#### Delete last quote back-end
+
+![Delete last quote back-end][deletelastquote-backend]
+
+Dit is het laatste endpoint voor de quotes van deze API. Met deze knop kan de laatste quote uit de database worden verwijderd, totdat de volledige tabel in de database leeg is. Zo kan een custom quote worden verwijderd als de gebruiker dit wilt. Er kunnen ook vooraf gegenereerde quotes worden verwijderd met deze knop.
+
+#### Get current admin back-end
+
+![Get current admin back-end][getcurrentadmin-backend]
+
+Via deze endpoint kan een admin die is ingelogd op de API zijn eigen info opvragen. De info die de admin te zien krijgt is zijn ID in de database en zijn username, het wachtwoord wordt voor veiligheidsredenen niet weergegeven, en is standaard gehashed (onleesbaar voor de mens) in de database.
+
+#### Post new admin back-end
+
+![Post new admin back-end][postadmin-backend]
+
+Aangezien er op deze API enkele beveiligingen zijn geïnstalleerd, waardoor enkel een admin gebruiker alle functionaliteiten heeft, is het handig dat iemand een admin gebruiker kan aanmaken. Dat kan met de post admin knop. Hier worden een username en password gevraagd, en door 'execute' aan te klikken, wordt de gebruiker in de database gezet. Nu kan de gebruiker inloggen met diezelfde gegevens voor admin rechten op de API.
+
+#### Get admin info back-end
+
+![Get admin info back-end][getadmininfo-backend]
+
+Via deze endpoint kan de info van eender welke admin worden opgevraagd. Ook hier worden enkel het database ID en username weergegeven en niet het wachtwoord. Als een gebruiker zijn username bijvoorbeeld vergeten zou zijn, kan hij die op deze manier proberen terugvinden.
+
+#### Delete admin met username back-end
+
+![Delete admin met username back-end][deleteadmin-backend]
+
+Elke admin die aangemaakt kan worden, moet ook kunnen verwijderd, daarom is deze endpoint er. Er kan een username in de URL worden meegegeven, en als deze bestaat, zal de admin volledig uit de database worden verwijderd. Deze endpoint wordt achterliggend ook gebruikt om de testadmins die door 'pytests' worden gebruikt te verwijderen.
+
+#### Get characters back-end
+
+![Get characters back-end][getcharacters-backend]
+
+Elke admin kan karakters van de show toevoegen aan de database, en al deze karakters kunnen worden opgevraagd via deze endpoint.
+
+#### Post character back-end
+
+![Post character back-end][postcharacters-backend]
+
+Als een admin graag zijn favoriete karakter van de show wilt toevoegen aan de database van deze API dan kan dat via deze endpoint. Hier wordt enkel de naam van het karakter gevraagd en via 'execute' wordt deze opgeslagen in de database.
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Postman requests
 
-Hier geef ik nog even een korte demonstratie hoe de 4 verschillende endpoints via Postman gebruikt kunnen worden.
+Hier geef ik nog even een korte demonstratie hoe de verschillende endpoints via Postman gebruikt kunnen worden.
 
 ### Get random quote Postman
 
@@ -214,6 +263,8 @@ Hosted API link: [https://api-eindproject-service-tibogeeraerts.cloud.okteto.net
 [deletelastquote-backend]: images/deletelastquote-back-end.png
 [getcurrentadmin-backend]: images/getcurrentadmin-back-end.png
 [postadmin-backend]: images/postadmin-back-end.png
+[getadmininfo-backend]: images/getadmininfo-back-end.png
+[deleteadmin-backend]: images/deleteadmin-back-end.png
 [getcharacters-backend]: images/getcharacters-back-end.png
 [postcharacters-backend]: images/postcharacter-back-end.png
 
