@@ -34,19 +34,34 @@
         <li>
           <a href="#front-end-api">Front-end API</a>
           <ul>
-             <li><a href="#get-random-quote-front-end">Get random quote front-end</li>
-             <li><a href="#get-last-quote-front-end">Get last quote front-end</li>
-             <li><a href="#create-quote-front-end">Create quote front-end</li>
-             <li><a href="#get-all-quotes-front-end">Get all quotes front-end</li>
+             <li><a href="#login-front-end">Login front-end</li>
+             <li><a href="#get-random-quote-front-end">Get random quote</li>
+             <li><a href="#get-last-quote-front-end">Get last quote</li>
+             <li><a href="#create-quote-front-end">Create quote</li>
+             <li><a href="#get-all-quotes-front-end">Get all quotes</li>
+             <li><a href="#get-current-admin-front-end">Get current admin</li>
+             <li><a href="#get-all-characters-front-end">Get all characters</li>
+             <li><a href="#create-admin-front-end">Create admin</li>
+             <li><a href="#create-character-front-end">Create character</li>
           </ul>
         </li>
         <li>
           <a href="#back-end-api">Back-end API</a>
           <ul>
-             <li><a href="#post-custom-quote-back-end">Post custom quote back-end</li>
-             <li><a href="#get-all-quotes-back-end">Get all quotes back-end</li>
-             <li><a href="#get-random-quote-back-end">Get random quote back-end</li>
-             <li><a href="#get-last-quote-back-end">Get last quote back-end</li>
+             <li><a href="#authorize-back-end">Authorization</li>
+             <li><a href="#post-token-back-end">Post token</li>
+             <li><a href="#post-custom-quote-back-end">Post custom quote</li>
+             <li><a href="#get-all-quotes-back-end">Get all quotes</li>
+             <li><a href="#get-random-quote-back-end">Get random quote</li>
+             <li><a href="#get-last-quote-back-end">Get last quote</li>
+             <li><a href="#put-last-quote-back-end">Put last quote</li>
+             <li><a href="#delete-last-quote-back-end">Delete last quote</li>
+             <li><a href="#get-current-admin-back-end">Get current admin</li>
+             <li><a href="#post-new-admin">Post new admin</li>
+             <li><a href="#get-admin-info-back-end">Get admin info</li>
+             <li><a href="#delete-admin-met-username-back-end">Delete admin</li>
+             <li><a href="#get-characters-back-end">Get characters</li>
+             <li><a href="#post-character-back-end">Post character</li>
           </ul>
         </li>
       </ul>
@@ -54,11 +69,20 @@
     <li>
       <a href="#postman-requests">Postman requests</a>
       <ul>
-             <li><a href="#get-random-quote-postman">Get random quote Postman</li>
-             <li><a href="#get-last-quote-postman">Get last quote Postman</li>
-             <li><a href="#get-all-quotes-postman">Get all quotes postman</li>
-             <li><a href="#post-custom-quote-postman">Post custom quote Postman</li>
-          </ul>
+          <li><a href="#post-token-postman">Post token</li>
+          <li><a href="#post-custom-quote-postman">Post custom quote</li>
+          <li><a href="#get-all-quotes-postman">Get all quotes</li>
+          <li><a href="#get-random-quote-postman">Get random quote</li>
+          <li><a href="#get-last-quote-postman">Get last quote</li>
+          <li><a href="#put-last-quote-postman">Put last quote</li>
+          <li><a href="#delete-last-quote-postman">Delete last quote</li>
+          <li><a href="#get-current-admin-postman">Get current admin</li>
+          <li><a href="#post-admin-postman">Post admin</li>
+          <li><a href="#get-admin-by-username-postman">Get admin info</li>
+          <li><a href="#delete-admin-by-username-postman">Delete admin</li>
+          <li><a href="#get-character-postman">Get characters</li>
+          <li><a href="#post-character-postman">Post character</li>
+        </ul>
     </li>
     <li><a href="#contactgegevens">Contactgegevens</a></li>
   </ol>
@@ -85,6 +109,10 @@ Ik heb voor dit project gekozen om quotes uit de serie 'The Office' aan de gebru
 
 Dit is de home pagina van de front-end API. De layout van de pagina is gemaakt met Bootstrap en de inhoud wordt dynamisch weergegeven op basis van AlpineJS. Er zijn verschillende panelen waar de verschillende GET en POST endpoints van de API zijn. 4 panelen bevatten de GET en POST endpoints voor quotes van 'The Office'. 2 panelen bevatten de endpoints voor de admin, en 2 panelen bevatten de endpoints voor de karakters.
 
+#### Login front-end
+![Login front-end][login-frontend]
+Bovenaan de pagina kan iemand met een admin username en password inloggen. Eens de admin is ingelogd kan deze ook de admin endpoints gebruiken.
+
 #### Get random quote front-end
 ![Get random quote knop front-end][getrandomquote-frontend]
 
@@ -108,6 +136,28 @@ De gebruiker kan ook zelf een quote opslaan in de database met de 'Create quote'
 
 Deze knop geeft de eerste 50 quotes in de database weer. Dit zijn normaal gezien al de quotes in de database aangezien er bij het opstarten maar 20 quotes in de database worden gezet. Via de back-end API kunnen er quotes worden toegevoegd, maar als er meer dan 50 quotes in totaal zijn worden deze niet meer weergegeven.
 
+#### Get current admin front-end
+![Get current admin front-end][getcurrentadmin-frontend]
+
+Als een admin is ingelogd, kan deze zijn eigen username opvragen via deze knop. Dit kan gebruikt worden om te controleren of de gebruiker als juiste gebruiker is ingelogd.
+
+#### Get all characters front-end
+![Get all characters front-end][getcharacters-frontend]
+
+Een admin kan karakters aanmaken. Dit is een admin functie omdat het de bedoeling is dat enkel karakters uit de show worden aangemaakt en hier niet zomaar iets komt te staan. Als een admin is ingelogd kan deze een naam ingeven en via de knop deze naam in de database zetten.
+
+#### Create admin front-end
+![Create admin front-end][postadmin-frontend]
+
+Als een gebruiker geen admin account heeft, dan kan deze dit account hier aanmaken. De gebruiker moet hier een naam en wachtwoord ingeven. Als de gekozen gebruikersnaam al bestaat zal hier de volgende melding voor verschijnen.
+
+![Username error front-end][username-error-frontend]
+
+#### Create character front-end
+![Create character front-end][postcharacter-frontend]
+
+Een ingelogde admin kan als laatste op de front-end, een karakter aanmaken. Zoals hierboven al vermeld is dit een admin functie, en is enkel de naam van het karakter nodig. Vervolgens kan met de blauwe knop het karakter worden opgeslagen in de database.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -116,6 +166,21 @@ Deze knop geeft de eerste 50 quotes in de database weer. Dit zijn normaal gezien
 [![screenshot van API back-end][backend-screenshot]][backend-url]
 
 Dit is de home pagina van de back-end API. Deze pagina is een interactieve API documentatie voorzien door Swagger UI. Deze interactieve pagina laat toe alle mogelijke eindpunten van de API aan te spreken op één plaats. Hier is te zien dat er 4 eindpunten zijn. 
+
+#### Authorize back-end
+Voor sommige zaken wordt er in deze API aan authorizatie gedaan. Dit gebeurd op basis van een OAuth2 token. In de back-end kan er worden ingelogd door op een open slot te drukken zoals hieronder. 
+
+![Unauthorized sign][unauthorized-backend]
+
+Vervolgens worden de normale stappen gevolgd om ergens in te loggen. Enkel een admin username en password volstaan hier.
+
+![Authorization window empty][authorizeblank-backend]
+![Authorization window filled][authorizefilled-backend]
+![Authorization window response][authorizeresponse-backend]
+
+Na deze stappen te doorlopen veranderd het origineel aangeklikte icoon naar een gesloten slot. Dit geeft aan dat de gebruiker is ingelogd.
+
+![Authorized sign][authorized-backend]:
 
 #### Post token back-end
 
@@ -217,28 +282,28 @@ Hier geef ik nog even een korte demonstratie hoe de verschillende endpoints via 
 ### Get last quote Postman
 ![Get last quote with Postman][getlast-postman]
 
-### Put last quote with Postman
+### Put last quote Postman
 ![Put last quote with Postman][putlast-postman]
 
-### Delete last quote with Postman
+### Delete last quote Postman
 ![Delete last quote with Postman][deletelast-postman]
 
-### Get current admin with Postman
+### Get current admin Postman
 ![Get current admin with Postman][getcurrentadmin-postman]
 
-### Post admin with Postman
+### Post admin Postman
 ![Post admin with Postman][postadmin-postman]
 
-### Get admin by username with Postman
+### Get admin by username Postman
 ![Get admin by username with Postman][getadmininfo-postman]
 
-### Delete admin by username with Postman
+### Delete admin by username Postman
 ![Delete admin by username with Postman][deleteadmin-postman]
 
-### Get character with Postman
+### Get character Postman
 ![Get character with Postman][getcharacters-postman]
 
-### Post character with Postman
+### Post character Postman
 ![Post character with Postman][postcharacter-postman]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -270,10 +335,16 @@ Hosted API link: [https://api-eindproject-service-tibogeeraerts.cloud.okteto.net
 
 [frontend-screenshot]: images/front-end-screenshot.png
 [frontend-url]: https://geeraertstibo-api-eindproject.netlify.app/
+[login-frontend]: images/login-front-end.jpg
+[username-error-frontend]: images/username-error-frontend.jpg
 [getrandomquote-frontend]: images/getrandomquote-front-end.jpg
 [getlastquote-frontend]: images/getlastquote-front-end.jpg
 [postquote-frontend]: images/postquote-front-end.jpg
 [getallquotes-frontend]: images/getallquotes-front-end.jpg
+[getcurrentadmin-frontend]: images/getcurrentadmin-front-end.jpg
+[postadmin-frontend]: images/postadmin-front-end.jpg
+[getcharacters-frontend]: images/getcharacters-front-end.jpg
+[postcharacter-frontend]: images/postcharacter-front-end.jpg
 
 [backend-screenshot]: images/back-end-screenshot.png
 [backend-url]: https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/docs
