@@ -6,4 +6,3 @@ passlib>=1.7.4
 python-jose>=3.3.0
 python-multipart>=0.0.5
 argon2-cffi>=21.1.0
-pytests>=6.2.5
