@@ -66,10 +66,18 @@ def delete_quote_last(db: Session):
 def create_admin(db: Session, admin: schemas.AdminCreate):
     hashed_password = auth.get_password_hash(admin.password)
     db_admin = models.Admin(username=admin.username, hashed_password=hashed_password)
-    db.add(db_admin)
-    db.commit()
-    db.refresh(db_admin)
-    return db_admin
+    adminexists = db.query(models.Admin).filter(models.Admin.username == admin.username).first()
+    if adminexists:
+        adminerror = {
+            "username": "error",
+            "id": 0,
+        }
+        return adminerror
+    else:
+        db.add(db_admin)
+        db.commit()
+        db.refresh(db_admin)
+        return db_admin
 
 # get admin by username
 def get_admin_username(db: Session, username: str):

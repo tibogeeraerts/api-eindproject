@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
     <script defer src="https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js"></script>
+    <script>
+      let token = null;
+
+      function setToken(newToken) {
+        token = newToken;
+      }
+
+      function getToken() {
+        return token;
+      }
+    </script>
   </head>
   <body>
     <div class="row" id="header">
@@ -21,13 +32,16 @@
           searchParams.append('username', this.username);
           searchParams.append('password', this.password);
         
-          this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/token', {
+          this.responsedata = await (await fetch('https://geeraertstibo-api-eindproject.netlify.app/token', {
             method: 'POST',
             body: searchParams,
             headers: {
               'Content-type': 'application/x-www-form-urlencoded',
             },
           })).json();
+
+          setToken(this.responsedata.access_token);
+
         },
       }">
         <div class="login">
@@ -53,7 +67,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/random')).json();
+                  this.responsedata = await (await fetch('https://geeraertstibo-api-eindproject.netlify.app/quotes/random')).json();
                 }
               }">
                 <button class="btn btn-primary" x-on:click="getData">Get random quote</button>
@@ -72,7 +86,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/last')).json();
+                  this.responsedata = await (await fetch('https://geeraertstibo-api-eindproject.netlify.app/quotes/last')).json();
                 }
               }">
                 <button class="btn btn-primary" x-on:click="getData">Get last quote</button>
@@ -94,7 +108,7 @@
                 responsedata: null,
                 postcustomquote: null,
                 async postquote() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes', {
+                  this.responsedata = await (await fetch('https://geeraertstibo-api-eindproject.netlify.app/quotes', {
                     method: 'POST',
                     body: JSON.stringify({
                     content: this.postcustomquote,
@@ -125,7 +139,7 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/quotes/all')).json();
+                  this.responsedata = await (await fetch('https://geeraertstibo-api-eindproject.netlify.app/quotes/all')).json();
                   let output = document.getElementById('output');
                   output.innerHTML = '';
                   for (let i = 0; i < this.responsedata.length; i++) {
@@ -153,10 +167,14 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/admin')).json();
+                  this.responsedata = await (await fetch('https://geeraertstibo-api-eindproject.netlify.app/admin', {
+                    headers: {
+                      'Authorization': 'Bearer ' + getToken()
+                    }
+                  })).json();
                 }
               }">
-                <button class="btn btn-primary" x-on:click="getData">Get current admin</button>
+                <button class="btn btn-primary" x-on:click="getData">Get admin</button>
                 <p class="api-output" x-text="responsedata.username"></p>
               </div>
             </div>
@@ -172,11 +190,23 @@
               <div x-data="{
                 responsedata: null,
                 async getData() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/admin/characters')).json();
+                  this.responsedata = await (await fetch('https://geeraertstibo-api-eindproject.netlify.app/characters', {
+                    headers: {
+                      'Authorization': 'Bearer ' + getToken()
+                    }
+                  })).json();
+
+                  let charactersoutput = document.getElementById('charactersoutput');
+                  charactersoutput.innerHTML = '';
+                  for (let i = 0; i < this.responsedata.length; i++) {
+                    let li = document.createElement('li');
+                    li.innerHTML = this.responsedata[i].name;
+                    charactersoutput.appendChild(li);
+                  }
                 }
               }">
                 <button class="btn btn-primary" x-on:click="getData">Get characters</button>
-                <p class="api-output" x-text="responsedata.name"></p>
+                <ul id="charactersoutput" class="api-output"></ul>
               </div>
             </div>
           </div>
@@ -195,7 +225,7 @@
                 username: null,
                 password: null,
                 async postadmin() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/admin', {
+                  this.responsedata = await (await fetch('http://127.0.0.1:8000/admin', {
                     method: 'POST',
                     body: JSON.stringify({
                       username: this.username,
@@ -205,6 +235,10 @@
                       'Content-type': 'application/json; charset=UTF-8',
                     },
                   })).json();
+                  
+                  if (this.responsedata.username == 'error'){
+                    window.alert('Username already exists');
+                  }
                 },
               }">
               <span>Username</span>
@@ -228,13 +262,14 @@
                 responsedata: null,
                 name: null,
                 async postcharacter() {
-                  this.responsedata = await (await fetch('https://api-eindproject-service-tibogeeraerts.cloud.okteto.net/admin/characters', {
+                  this.responsedata = await (await fetch('https://geeraertstibo-api-eindproject.netlify.app/characters', {
                     method: 'POST',
                     body: JSON.stringify({
                       name: this.name
                     }),
                     headers: {
                       'Content-type': 'application/json; charset=UTF-8',
+                      'Authorization': 'Bearer ' + getToken(),
                     },
                   })).json();
                 },
