@@ -96,10 +96,10 @@ async def update_quote_last(quote: schemas.QuoteCreate, db: Session = Depends(ge
     return updated_quote
 
 # DELETE last quote
-@app.delete("/quotes/last", response_model=schemas.Quote)
+@app.delete("/quotes/last", response_model=str)
 async def delete_quote_last(db: Session = Depends(get_db)):
     deleted_quote = crud.delete_quote_last(db)
-    return deleted_quote
+    return "Quote #" + str(deleted_quote.id) + " deleted"
 
 # POST admin
 @app.post("/admin", response_model=schemas.Admin)
@@ -122,11 +122,11 @@ def read_admin(username: str, db: Session = Depends(get_db)):
     return admin
 
 # DELETE admin
-@app.delete("/admin/{username}", response_model=schemas.Admin)
+@app.delete("/admin/{username}", response_model=str)
 async def delete_admin(username: str, db: Session = Depends(get_db)):
     admin_username = crud.get_admin_username(db, username)
     deleted_admin = crud.delete_admin(db, admin_username)
-    return deleted_admin
+    return "Admin: " + str(deleted_admin.username) + " deleted"
 
 # POST character
 @app.post("/characters", response_model=schemas.Character)
