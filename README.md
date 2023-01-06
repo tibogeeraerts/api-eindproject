@@ -202,21 +202,44 @@ Als een admin graag zijn favoriete karakter van de show wilt toevoegen aan de da
 
 Hier geef ik nog even een korte demonstratie hoe de verschillende endpoints via Postman gebruikt kunnen worden.
 
-### Get random quote Postman
+### Post token Postman
+![Post token with Postman][posttoken-postman]
 
+### Post custom quote Postman
+![Post custom quote with Postman][postquote-postman]
+
+### Get all quotes Postman
+![Get all quotes with Postman][getall-postman]
+
+### Get random quote Postman
 ![Get random quote with Postman][getrandom-postman]
 
 ### Get last quote Postman
-
 ![Get last quote with Postman][getlast-postman]
 
-### Get all quotes Postman
+### Put last quote with Postman
+![Put last quote with Postman][putlast-postman]
 
-![Get all quotes with Postman][getall-postman]
+### Delete last quote with Postman
+![Delete last quote with Postman][deletelast-postman]
 
-### Post custom quote Postman
+### Get current admin with Postman
+![Get current admin with Postman][getcurrentadmin-postman]
 
-![Post custom quote with Postman][postquote-postman]
+### Post admin with Postman
+![Post admin with Postman][postadmin-postman]
+
+### Get admin by username with Postman
+![Get admin by username with Postman][getadmininfo-postman]
+
+### Delete admin by username with Postman
+![Delete admin by username with Postman][deleteadmin-postman]
+
+### Get character with Postman
+![Get character with Postman][getcharacters-postman]
+
+### Post character with Postman
+![Post character with Postman][postcharacter-postman]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -274,7 +297,16 @@ Hosted API link: [https://api-eindproject-service-tibogeeraerts.cloud.okteto.net
 [unauthorized-backend]: images/unauthorized-back-end.jpg
 [authorized-backend]: images/authorized-back-end.jpg
 
+[posttoken-postman]: images/postman-posttoken.jpg
+[postquote-postman]: images/postman-postquote.jpg
+[getall-postman]: images/postman-getall.jpg
 [getrandom-postman]: images/postman-getrandom.jpg
 [getlast-postman]: images/postman-getlast.jpg
-[getall-postman]: images/postman-getall.jpg
-[postquote-postman]: images/postman-postquote.jpg
+[putlast-postman]: images/postman-putquote.jpg
+[deletelast-postman]: images/postman-deletequote.jpg
+[getcurrentadmin-postman]: images/postman-getadmin.jpg
+[postadmin-postman]: images/postman-postadmin.jpg
+[getadmininfo-postman]: images/postman-getadmininfo.jpg
+[deleteadmin-postman]: images/postman-deleteadmin.jpg
+[getcharacters-postman]: images/postman-getcharacters.jpg
+[postcharacter-postman]: images/postman-postcharacter.jpg
