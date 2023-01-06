@@ -113,8 +113,23 @@ def read_current_admin(db: Session = Depends(get_db), token: str = Depends(auth.
     current_admin = auth.get_current_admin(db, token)
     return current_admin
 
+# GET admin by username
+@app.get("/admin/{username}", response_model=schemas.Admin)
+def read_admin(username: str, db: Session = Depends(get_db)):
+    admin = crud.get_admin_username(db, username)
+    if admin is None:
+        raise HTTPException(status_code=404, detail="Admin not found")
+    return admin
+
+# DELETE admin
+@app.delete("/admin/{username}", response_model=schemas.Admin)
+async def delete_admin(username: str, db: Session = Depends(get_db)):
+    admin_username = crud.get_admin_username(db, username)
+    deleted_admin = crud.delete_admin(db, admin_username)
+    return deleted_admin
+
 # POST character
-@app.post("/admin/characters", response_model=schemas.Character)
+@app.post("/characters", response_model=schemas.Character)
 async def create_character(character: schemas.CharacterCreate, db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
     current_admin = auth.get_current_admin(db, token)
     print('Logged in as: ' + current_admin.username)
@@ -123,7 +138,7 @@ async def create_character(character: schemas.CharacterCreate, db: Session = Dep
     return new_character
 
 # GET all characters
-@app.get("/admin/characters", response_model=list[schemas.Character])
+@app.get("/characters", response_model=list[schemas.Character])
 async def read_characters(db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)):
     current_admin = auth.get_current_admin(db, token)
     print('Logged in as: ' + current_admin.username)

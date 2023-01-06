@@ -77,13 +77,13 @@
 <!-- Over dit project -->
 ## Over dit project
 
-Ik heb voor dit project gekozen om quotes uit de serie 'The Office' aan de gebruiker weer te geven. Ik heb gekozen voor deze serie omdat dit één van mijn favoriete series is, en er enrom veel grappige dingen in worden gezegd. De ideale serie om dus grappige quotes uit weer te geven.
+Ik heb voor dit project gekozen om quotes uit de serie 'The Office' aan de gebruiker weer te geven. Er kan ook een admin worden aangemaakt om de pagina te bewerken. De admin kan ook karakters toevoegen aan de database en deze opvragen via de API. Ik heb gekozen voor deze serie omdat dit één van mijn favoriete series is, en er enrom veel grappige dingen in worden gezegd. De ideale serie om dus grappige quotes uit weer te geven. 
 
 ### Front-end API
 
 [![screenshot van API front-end][frontend-screenshot]][frontend-url]
 
-Dit is de home pagina van de front-end API. De layout van de pagina is gemaakt met Bootstrap en de inhoud wordt dynamisch weergegeven op basis van AlpineJS. Er zijn 3 knoppen aanwezig op de pagina.
+Dit is de home pagina van de front-end API. De layout van de pagina is gemaakt met Bootstrap en de inhoud wordt dynamisch weergegeven op basis van AlpineJS. Er zijn verschillende panelen waar de verschillende GET en POST endpoints van de API zijn. 4 panelen bevatten de GET en POST endpoints voor quotes van 'The Office'. 2 panelen bevatten de endpoints voor de admin, en 2 panelen bevatten de endpoints voor de karakters.
 
 #### Get random quote front-end
 ![Get random quote knop front-end][getrandomquote-frontend]
@@ -116,6 +116,12 @@ Deze knop geeft de eerste 50 quotes in de database weer. Dit zijn normaal gezien
 [![screenshot van API back-end][backend-screenshot]][backend-url]
 
 Dit is de home pagina van de back-end API. Deze pagina is een interactieve API documentatie voorzien door Swagger UI. Deze interactieve pagina laat toe alle mogelijke eindpunten van de API aan te spreken op één plaats. Hier is te zien dat er 4 eindpunten zijn. 
+
+#### Post token back-end
+
+![Post token back-end][posttoken-backend]
+
+Dit POST endpoint van de API geeft een OAuth2 token terug. Dit token wordt op de achtergrond gebruikt om aan te geven of de request van een admin komt of niet.
 
 #### Post custom quote back-end
 
@@ -203,6 +209,19 @@ Hosted API link: [https://api-eindproject-service-tibogeeraerts.cloud.okteto.net
 [getallquotes-backend]: images/getallquotes-back-end.jpg
 [getrandomquote-backend]: images/getrandomquote-back-end.jpg
 [getlastquote-backend]: images/getlastquote-back-end.jpg
+[posttoken-backend]: images/posttoken-back-end.png
+[updatelastquote-backend]: images/updatelastquote-back-end.png
+[deletelastquote-backend]: images/deletelastquote-back-end.png
+[getcurrentadmin-backend]: images/getcurrentadmin-back-end.png
+[postadmin-backend]: images/postadmin-back-end.png
+[getcharacters-backend]: images/getcharacters-back-end.png
+[postcharacters-backend]: images/postcharacter-back-end.png
+
+[authorizeblank-backend]: images/authorize-blank-back-end.jpg
+[authorizefilled-backend]: images/authorize-filled-back-end.jpg
+[authorizeresponse-backend]: images/authorize-response-back-end.jpg
+[unauthorized-backend]: images/unauthorized-back-end.jpg
+[authorized-backend]: images/authorized-back-end.jpg
 
 [getrandom-postman]: images/postman-getrandom.jpg
 [getlast-postman]: images/postman-getlast.jpg

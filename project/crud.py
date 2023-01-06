@@ -76,6 +76,13 @@ def get_admin_username(db: Session, username: str):
     admin = db.query(models.Admin).filter(models.Admin.username == username).first()
     return admin
 
+# delete admin by username
+def delete_admin(db: Session, admin: schemas.Admin):
+    admin = db.query(models.Admin).filter(models.Admin.username == admin.username).first()
+    db.delete(admin)
+    db.commit()
+    return admin
+
 # create character (only for admin)
 def create_character(db: Session, character: schemas.CharacterCreate):
     db_character = models.Character(name=character.name)
