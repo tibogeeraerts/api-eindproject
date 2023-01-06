@@ -225,7 +225,7 @@
                 username: null,
                 password: null,
                 async postadmin() {
-                  this.responsedata = await (await fetch('http://127.0.0.1:8000/admin', {
+                  this.responsedata = await (await fetch('https://geeraertstibo-api-eindproject.netlify.app/admin', {
                     method: 'POST',
                     body: JSON.stringify({
                       username: this.username,
