@@ -308,6 +308,13 @@ Hier geef ik nog even een korte demonstratie hoe de verschillende endpoints via 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Postman requests
+![Pytest run][pytest-screenshot]
+
+Om te testen dat al de endpoints van de API werken, is er ook een test bestand gemaakt. Dit bestand wordt gebruikt als het commando pytest wordt ingegeven. De test is geschreven om al de endpoints te testen en na te kijken of de juiste data wordt teruggegeven. Als alles gaat zoals het hoort wordt er een groene succes-boodschap weergegeven in de CLI waar het commando is uitgevoerd.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- CONTACT -->
 ## Contactgegevens
@@ -381,3 +388,5 @@ Hosted API link: [https://api-eindproject-service-tibogeeraerts.cloud.okteto.net
 [deleteadmin-postman]: images/postman-deleteadmin.jpg
 [getcharacters-postman]: images/postman-getcharacters.jpg
 [postcharacter-postman]: images/postman-postcharacter.jpg
+
+[pytest-screenshot]: images/pytest.jpg
